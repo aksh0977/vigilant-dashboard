@@ -19,8 +19,8 @@ store = get_store()
 
 # ---- sidebar -------------------------------------------------------
 with st.sidebar:
-    st.title("🛡️ Sentinel")
-    st.caption("SIH 26145 | PASSIVE_UNIDIRECTIONAL enclave")
+    st.title("🛡️ Vigilant")
+    st.caption("")
     st.markdown(f"**Data source:** `{store.mode}`")
     freeze = st.toggle("Freeze feed (inspect)", value=False)
     sev_filter = st.multiselect("Severity", config.SEVERITY_ORDER, default=config.SEVERITY_ORDER)

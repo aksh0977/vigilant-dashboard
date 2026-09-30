@@ -7,7 +7,7 @@ import config
 from components import alert_feed, charts, forensic_drawer, kpi_bar, ti_panel
 from core.alert_store import AlertStore
 
-st.set_page_config(page_title="Sentinel Ops Console", page_icon="🛡️", layout="wide")
+st.set_page_config(page_title="Vigilant Dashboard", page_icon="🛡️", layout="wide")
 
 
 @st.cache_resource

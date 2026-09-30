@@ -8,7 +8,11 @@ from components import alert_feed, charts, forensic_drawer, kpi_bar, ti_panel
 from core.alert_store import AlertStore
 
 st.set_page_config(page_title="Vigilant Dashboard", page_icon="🛡️", layout="wide")
-
+# Hide the top-right GitHub / hamburger menu and footer
+hide_streamlit_style = """
+    
+"""
+st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
 @st.cache_resource
 def get_store() -> AlertStore:

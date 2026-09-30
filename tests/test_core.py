@@ -1,3 +1,4 @@
+import importlib
 import json
 
 import config
@@ -22,6 +23,25 @@ def test_sample_alert_valid():
 def test_rejects_malformed():
     assert validate_alert({"alert_id": "x"}) is None
     assert validate_alert("nope") is None
+
+
+def test_vigilant_env_names_supported(monkeypatch):
+    monkeypatch.setenv("VIGILANT_MODE", "file")
+    monkeypatch.setenv("VIGILANT_ALERTS_FILE", "/tmp/vigilant-alerts.jsonl")
+    monkeypatch.setenv("VIGILANT_TELEMETRY_FILE", "/tmp/vigilant-telemetry.json")
+    monkeypatch.setenv("VIGILANT_REFRESH", "2.5")
+    importlib.reload(config)
+
+    assert config.DATA_MODE == "file"
+    assert str(config.ALERTS_FILE) == "/tmp/vigilant-alerts.jsonl"
+    assert str(config.TELEMETRY_FILE) == "/tmp/vigilant-telemetry.json"
+    assert config.REFRESH_SECONDS == 2.5
+
+    monkeypatch.delenv("VIGILANT_MODE", raising=False)
+    monkeypatch.delenv("VIGILANT_ALERTS_FILE", raising=False)
+    monkeypatch.delenv("VIGILANT_TELEMETRY_FILE", raising=False)
+    monkeypatch.delenv("VIGILANT_REFRESH", raising=False)
+    importlib.reload(config)
 
 
 def test_file_tail(tmp_path, monkeypatch):

@@ -32,7 +32,7 @@ with st.sidebar:
     if store.rejected:
         st.warning(f"{store.rejected} malformed alert(s) rejected")
 
-st.title("Passive NDR Operations Console")
+st.title("Vigilant Passive NDR Operations Console")
 
 
 def live_view() -> None:
